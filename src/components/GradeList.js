@@ -20,8 +20,12 @@ const GradeList = () => {
   const retrieveGrade = () => {
     GradeDataService.getAll()
       .then((response) => {
-        console.log(response.data);
-        setGrade(response.data);
+        const grades = response.data.map((item) => {
+          let id = item._id;
+          return [...item, id];
+        });
+        console.log(grades);
+        setGrade(grades);
       })
       .catch((e) => {
         console.log(e);
